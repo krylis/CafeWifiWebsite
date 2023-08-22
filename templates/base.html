@@ -14,8 +14,14 @@
         <a class="navbar-brand" href="{{ url_for('index') }}">Cafe and Wifi</a>
       </div>
     </nav>
-    {% block content %}
-    {% endblock %}
+  <br />
+
+  <!--Content-->
+    <div class="container-fluid">
+      {% block content %}
+      {% endblock %}
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
   </body>
 </html>
