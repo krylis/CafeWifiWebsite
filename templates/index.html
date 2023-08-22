@@ -4,7 +4,9 @@
     {% for cafe in cafes %}
         <div class="col-md-auto">
             <figure class="figure">
-                <img src="{{ cafe.img_url }}" class="figure-img img-fluid rounded" alt="..." style="width:400px;height:300px">
+                <a href="{{ url_for('show_cafe', cafe_id=cafe.id) }}">
+                    <img src="{{ cafe.img_url }}" class="figure-img img-fluid rounded" alt="..." style="width:400px;height:300px">
+                </a>
                 <figcaption class="figure-caption text-center fw-bold">{{ cafe.name }}</figcaption>
             </figure>
         </div>

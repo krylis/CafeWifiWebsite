@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="row justify-content-md-center">
+        <table class="table" style="width:800px">
+            <thead>
+                <tr>
+                    <th colspan="2" class="text-center">
+                        {{ cafe.name }}
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <img src="{{ cafe.img_url }}" class="border" style="width:500px;height:400px;">
+                    </td>
+                    <td>
+                        <table class="table table-hover">
+                            <tr>
+                                <td>Location: {{ cafe.location }}</td>
+                            </tr>
+                            <tr>
+                                <td>Map link: <a href="{{ cafe.map_url }}">{{ cafe.map_url }}</a></td>
+                            </tr>
+                            <tr>
+                                <td>Sockets: {{ cafe.has_sockets }}</td>
+                            </tr>
+                            <tr>
+                                <td>Toilets: {{ cafe.has_toilet }}</td>
+                            </tr>
+                            <tr>
+                                <td>Wifi: {{ cafe.has_wifi }}</td>
+                            </tr>
+                            <tr>
+                                <td>Can take calls: {{ cafe.can_take_calls }}</td>
+                            </tr>
+                            <tr>
+                                <td>Seats: {{ cafe.seats }}</td>
+                            </tr>
+                            <tr>
+                                <td>Coffee: {{ cafe.coffee_price }}</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+
+        </table>
+    </div>
+{% endblock %}

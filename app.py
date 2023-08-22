@@ -24,9 +24,15 @@ class Cafe(db.Model):
     coffee_price = db.Column(db.String)
 
 
+@app.route('/show_cafe/<int:cafe_id>')
+def show_cafe(cafe_id):
+    cafe = Cafe.query.get_or_404(cafe_id)
+    return render_template('cafe.html', cafe=cafe)
+
+
 @app.route('/')
 def index():
-    cafes = Cafe.query.all()
+    cafes = Cafe.query.order_by(Cafe.name)
     return render_template('index.html', cafes=cafes)
 
 
