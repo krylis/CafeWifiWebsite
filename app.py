@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
@@ -24,6 +24,45 @@ class Cafe(db.Model):
     coffee_price = db.Column(db.String)
 
 
+@app.route('/add_cafe', methods=["POST", "GET"])
+def add_cafe():
+    if request.method == "POST":
+        new_cafe = Cafe()
+        new_cafe.name = request.form['name']
+        new_cafe.map_url = request.form['map']
+        new_cafe.seats = request.form['seats']
+        new_cafe.img_url = request.form['img']
+        new_cafe.location = request.form['location']
+        new_cafe.coffee_price = request.form['coffee']
+
+        if request.form.get('sockets'):
+            new_cafe.has_sockets = True
+        else:
+            new_cafe.has_sockets = False
+
+        if request.form.get('wifi'):
+            new_cafe.has_wifi = True
+        else:
+            new_cafe.has_wifi = False
+
+        if request.form.get('calls'):
+            new_cafe.can_take_calls = True
+        else:
+            new_cafe.can_take_calls = False
+
+        if request.form.get('toilets'):
+            new_cafe.has_toilet = True
+        else:
+            new_cafe.has_toilet = False
+
+        db.session.add(new_cafe)
+        db.session.commit()
+
+        return redirect(url_for('index'))
+
+    return render_template('add.html')
+
+
 @app.route('/delete/<int:cafe_id>')
 def delete_cafe(cafe_id):
     cafe = Cafe.query.get_or_404(cafe_id)
@@ -31,7 +70,7 @@ def delete_cafe(cafe_id):
         db.session.delete(cafe)
         db.session.commit()
     except:
-        return "There was a problem deleting that cafe."
+        return "There was a problem deleting this cafe."
 
     return render_template('delete.html', cafe=cafe)
 
