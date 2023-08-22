@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="row justify-content-md-center">
+      <div class="alert alert-danger" role="alert">
+        You have deleted the {{ cafe.name }} from the database!
+      </div>
+      <a href="{{ url_for('index') }}">Return Home</a>
+    </div>
+{% endblock %}

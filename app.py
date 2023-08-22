@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
@@ -22,6 +22,18 @@ class Cafe(db.Model):
     can_take_calls = db.Column(db.Boolean, nullable=False)
     seats = db.Column(db.String)
     coffee_price = db.Column(db.String)
+
+
+@app.route('/delete/<int:cafe_id>')
+def delete_cafe(cafe_id):
+    cafe = Cafe.query.get_or_404(cafe_id)
+    try:
+        db.session.delete(cafe)
+        db.session.commit()
+    except:
+        return "There was a problem deleting that cafe."
+
+    return render_template('delete.html', cafe=cafe)
 
 
 @app.route('/show_cafe/<int:cafe_id>')
