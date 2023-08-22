@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% for cafe in cafes %}
+        {{ cafe.name }}
+        <br />
+    {% endfor %}
+{% endblock %}
